@@ -1,13 +1,26 @@
-package com.last.shadow.navigationapp.ui.home
+package com.last.shadow.navigationapp.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.last.shadow.navigationapp.NavigationProvider
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel : ViewModel(), NavigationProvider<LoginViewModel.LoginView> {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    // CurrentView LiveData
+    private val currentViewMutableLiveData = MutableLiveData<Pair<LoginView, LoginView>>()
+    val currentViewLiveData: LiveData<Pair<LoginView, LoginView>>
+        get() = currentViewMutableLiveData
+
+    override fun navigateTo(originView: LoginView, destinationView: LoginView) {
+        currentViewMutableLiveData.value = Pair(originView, destinationView)
     }
-    val text: LiveData<String> = _text
+
+    sealed class LoginView {
+        object LoginFragment : LoginView()
+        object Register : LoginView()
+        object ForgotPasswordFragment : LoginView()
+        object MainActivity : LoginView()
+    }
+
 }

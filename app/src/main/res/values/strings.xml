@@ -4,4 +4,9 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_login">Login</string>
+    <string name="title_register">Sign Up</string>
+    <string name="title_forgot_password">Forgot your password?</string>
+    <string name="title_choose_tournament">Choose your favorite tournament</string>
+    <string name="content_description_libertadores">Libertadores Cup</string>
+    <string name="content_description_champions">Champions League</string>
 </resources>
