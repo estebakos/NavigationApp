@@ -56,8 +56,8 @@ class LoginFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (args.user != null) {
-            args.user.let {
+        if (args.loginParams != null) {
+            args.loginParams.let {
                 text_login_register.text = "Welcome " + it?.userName
             }
         }

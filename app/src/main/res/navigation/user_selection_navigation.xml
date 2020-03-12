@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_selection_navigation"
+    app:startDestination="@id/user_selection_fragment">
+
+    <activity
+        android:id="@+id/main_activity"
+        android:name="com.last.shadow.navigationapp.MainActivity"
+        android:label="Main Activity"
+        tools:layout="@layout/activity_main" />
+
+    <fragment
+        android:id="@+id/user_selection_fragment"
+        android:name="com.last.shadow.navigationapp.ui.userSelection.UserSelectionFragment"
+        android:label="UserSelectionFragment"
+        tools:layout="@layout/fragment_user_selection" >
+        <action
+            android:id="@+id/action_userSelectionFragment_to_main_activity"
+            app:destination="@id/main_activity" />
+    </fragment>
+
+</navigation>

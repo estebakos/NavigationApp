@@ -86,6 +86,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showMainActivity() {
-        navController.navigate(R.id.action_login_to_main_activity)
+        navController.navigate(R.id.action_login_to_user_selection_activity)
     }
 }
