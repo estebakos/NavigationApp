@@ -10,7 +10,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.last.shadow.navigationapp.R
+import com.last.shadow.navigationapp.model.User
 import com.last.shadow.navigationapp.ui.login.LoginViewModel.LoginView
+import com.last.shadow.navigationapp.ui.register.ConfirmationFragmentDirections
 
 class LoginActivity : AppCompatActivity() {
 
@@ -30,8 +32,6 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.login,
@@ -46,21 +46,27 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun onViewChange(navigationEntry: Pair<LoginView, LoginView>) {
-        val (origin, destination) = navigationEntry
+    private fun onViewChange(navigationEntry: Triple<LoginView, LoginView, Any?>) {
+        val (origin, destination, params) = navigationEntry
         when (destination) {
-            is LoginView.LoginFragment -> showLoginFragment(origin)
-            is LoginView.Register -> showRegisterFragment()
+            is LoginView.LoginFragment -> showLoginFragment(origin, params)
+            is LoginView.RegisterFragment -> showRegisterFragment()
+            is LoginView.ConfirmationFragment -> showConfirmationFragment()
             is LoginView.ForgotPasswordFragment -> showForgotPasswordFragment()
             is LoginView.MainActivity -> showMainActivity()
         }
     }
 
-    private fun showLoginFragment(origin: LoginView) {
+    private fun showLoginFragment(origin: LoginView, params: Any?) {
         with(navController) {
             when (origin) {
-                is LoginView.Register ->
+                is LoginView.RegisterFragment ->
                     navigate(R.id.action_registration_to_login)
+                is LoginView.ConfirmationFragment -> {
+                    val user = params as User
+                    val action = ConfirmationFragmentDirections.actionConfirmationToLogin(user)
+                    navigate(action)
+                }
                 is LoginView.ForgotPasswordFragment ->
                     navigate(R.id.action_forgot_password_to_login)
             }
@@ -69,6 +75,10 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showRegisterFragment() {
         navController.navigate(R.id.action_login_to_registration)
+    }
+
+    private fun showConfirmationFragment() {
+        navController.navigate(R.id.action_registration_to_confirmation)
     }
 
     private fun showForgotPasswordFragment() {

@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_to_registration"
-            app:destination="@id/registration"
+            app:destination="@id/registration_navigation"
             app:enterAnim="@anim/fragment_fade_enter"
             app:exitAnim="@anim/fragment_fade_exit"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -31,19 +31,13 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="user"
+            app:argType="com.last.shadow.navigationapp.model.User"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 
-    <fragment
-        android:id="@+id/registration"
-        android:name="com.last.shadow.navigationapp.ui.register.RegisterFragment"
-        android:label="@string/title_register"
-        tools:layout="@layout/fragment_register">
-        <action
-            android:id="@+id/action_registration_to_login"
-            app:destination="@id/login"
-            app:popUpTo="@id/login"
-            app:popUpToInclusive="true" />
-    </fragment>
     <fragment
         android:id="@+id/forgot_password"
         android:name="com.last.shadow.navigationapp.ui.forgotPassword.ForgotPasswordFragment"
@@ -60,5 +54,34 @@
         android:name="com.last.shadow.navigationapp.MainActivity"
         android:label="Product Details"
         tools:layout="@layout/activity_main" />
+
+    <navigation
+        android:id="@+id/registration_navigation"
+        app:startDestination="@id/registration">
+        <fragment
+            android:id="@+id/confirmation"
+            android:name="com.last.shadow.navigationapp.ui.register.ConfirmationFragment"
+            android:label="@string/title_confirmation"
+            tools:layout="@layout/fragment_confirmation">
+            <action
+                android:id="@+id/action_confirmation_to_login"
+                app:destination="@id/login" />
+
+        </fragment>
+        <fragment
+            android:id="@+id/registration"
+            android:name="com.last.shadow.navigationapp.ui.register.RegisterFragment"
+            android:label="@string/title_register"
+            tools:layout="@layout/fragment_register">
+            <action
+                android:id="@+id/action_registration_to_login"
+                app:destination="@id/login"
+                app:popUpTo="@id/login"
+                app:popUpToInclusive="true" />
+            <action
+                android:id="@+id/action_registration_to_confirmation"
+                app:destination="@id/confirmation" />
+        </fragment>
+    </navigation>
 
 </navigation>

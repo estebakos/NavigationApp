@@ -6,7 +6,12 @@
     <string name="title_login">Login</string>
     <string name="title_register">Sign Up</string>
     <string name="title_forgot_password">Forgot your password?</string>
+    <string name="title_confirmation">¡Welcome to the Navigation Community!</string>
     <string name="title_choose_tournament">Choose your favorite tournament</string>
     <string name="content_description_libertadores">Libertadores Cup</string>
     <string name="content_description_champions">Champions League</string>
+    <string name="confirmation_user_name">Your username is %1$s</string>
+    <string name="confirmation_email">Your email is %1$s</string>
+    <string name="registration_user_name_hint">Type your username</string>
+    <string name="registration_email_hint">Type your email</string>
 </resources>
